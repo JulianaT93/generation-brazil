@@ -11,6 +11,10 @@
 📄 A proposta do desafio online de programação na prática para curso "Desenvolvedor/a Web Cloud - AWS re/Start" da Generation Brazil em parceria com o Potência Tech (Ifood) é criar uma API REST para armazenar dados dos alunos de uma escola.
 
 ---
+## Link da Documentação via Swagger
+[Documentação](https://charming-elk-smock.cyclic.cloud/documento)
+
+---
 ## ⚙️ Funcionalidades
 
 <ul>
@@ -53,7 +57,10 @@ $ npm install -D nodemon
 # Execute a aplicação em modo de desenvolvimento
 $ npm run dev
 
-# O servidor inciará na porta:3000 - acesse http://localhost:3000 
+# O servidor inciará na porta: 3000 em seu local - Utilize http://localhost:3000
+
+# Poderá acessar também via link do deploy - Utilize https://charming-elk-smock.cyclic.cloud/
+ 
 
 ```
 ---
