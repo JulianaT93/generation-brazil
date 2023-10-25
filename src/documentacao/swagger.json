@@ -40,7 +40,7 @@
                 "properties": {
                   "email": {
                     "type": "string",
-                    "example": "Luiz Guarda"
+                    "example": "luizg@email.com"
                   },
                   "senha": {
                     "type": "string",
@@ -68,11 +68,11 @@
                         },
                         "nome": {
                           "type": "string",
-                          "example": "Eduardo dos Santos"
+                          "example": "Luiz Guarda da Silva"
                         },
                         "email": {
                           "type": "string",
-                          "example": "Luiz Guarda"
+                          "example": "luizg@email.com"
                         }
                       }
                     },
@@ -152,11 +152,11 @@
                 "properties": {
                   "nome": {
                     "type": "string",
-                    "example": "Eduardo dos Santos"
+                    "example": "Luiz Guarda da Silva"
                   },
                   "email": {
                     "type": "string",
-                    "example": "Luiz Guarda"
+                    "example": "luizg@email.com"
                   },
                   "senha": {
                     "type": "string",
@@ -181,11 +181,11 @@
                     },
                     "nome": {
                       "type": "string",
-                      "example": "Eduardo dos Santos"
+                      "example": "Luiz Guarda da Silva"
                     },
                     "email": {
                       "type": "string",
-                      "example": "Luiz Guarda"
+                      "example": "luizg@email.com"
                     }
                   }
                 }
@@ -250,7 +250,7 @@
                     },
                     "nome": {
                       "type": "string",
-                      "example": "Luiz Guarda"
+                      "example": "Luiz Guarda da Silva"
                     },
                     "email": {
                       "type": "string",
@@ -302,7 +302,7 @@
                 "properties": {
                   "nome": {
                     "type": "string",
-                    "example": "Luiz Guarda da Silva"
+                    "example": "Luiz Guarda da Silva Moreira"
                   },
                   "email": {
                     "type": "string",
@@ -715,7 +715,7 @@
                 "properties": {
                   "nome": {
                     "type": "string",
-                    "example": "Eduardo dos Santos"
+                    "example": "Eduardo dos Santos da Silva"
                   },
                   "idade": {
                     "type": "integer",
@@ -756,7 +756,7 @@
                     },
                     "nome": {
                       "type": "string",
-                      "example": "Eduardo dos Santos"
+                      "example": "Eduardo dos Santos da Silva"
                     },
                     "idade": {
                       "type": "integer",
