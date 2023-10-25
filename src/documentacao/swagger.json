@@ -3,7 +3,7 @@
   "info": {
     "title": "Escola API",
     "description": "API para gerenciar escola.",
-    "version": "0.0.1",
+    "version": "1.0.1",
     "contact": {
       "url": "https://www.linkedin.com/in/juliana-toguti/",
       "name": "LinkedIn"
@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "url": "https://generation-brazil.vercel.app/",
+      "url": "https://charming-elk-smock.cyclic.cloud",
       "description": "Ambiente de produção"
     },
     {
