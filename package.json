@@ -1,0 +1,32 @@
+{
+  "name": "generation-brazil",
+  "version": "1.0.0",
+  "description": "Desafio Online - Programação na Prática",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./src/index.js",
+    "start": "node ./src/index.js"
+  },
+  "keywords": [
+    "Generation_Brazil",
+    "Node.js",
+    "API REST",
+    "Deploy",
+    "Postgres"
+  ],
+  "author": "Juliana S. Toguti",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "joi": "^17.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "knex": "^3.0.1",
+    "pg": "^8.11.3",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

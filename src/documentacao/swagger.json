@@ -1,0 +1,943 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Escola API",
+    "description": "API para gerenciar escola.",
+    "version": "0.0.1",
+    "contact": {
+      "url": "https://www.linkedin.com/in/juliana-toguti/",
+      "name": "LinkedIn"
+    }
+  },
+  "externalDocs": {
+    "url": "https://github.com/JulianaT93/generation-brazil",
+    "description": "Repositório do Projeto"
+  },
+  "servers": [
+    {
+      "url": "http:/localhost:3000/",
+      "description": "Ambiente de teste local"
+    }
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "Autenticação"
+        ],
+        "summary": "Login do usuário",
+        "requestBody": {
+          "description": "Informar os dados para fazer login do usuário.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "Luiz Guarda"
+                  },
+                  "senha": {
+                    "type": "string",
+                    "example": "123abc"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "usuario": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 2
+                        },
+                        "nome": {
+                          "type": "string",
+                          "example": "Eduardo dos Santos"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "Luiz Guarda"
+                        }
+                      }
+                    },
+                    "token": {
+                      "type": "string",
+                      "example": "<token>"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Se o e-mail e/ou senha estiverem errados, retornará erro.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Usuário e/ou senha inválidos!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não foi possível encontrar usuário com o e-mail informado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "O usuario não foi encontrado.."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Erro interno do servidor."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usuario": {
+      "post": {
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "Cadastrar usuário",
+        "requestBody": {
+          "description": "Informar os dados para cadastrar o usuário.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string",
+                    "example": "Eduardo dos Santos"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "Luiz Guarda"
+                  },
+                  "senha": {
+                    "type": "string",
+                    "example": "123abc"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 2
+                    },
+                    "nome": {
+                      "type": "string",
+                      "example": "Eduardo dos Santos"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "Luiz Guarda"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Caso já exista usuário cadastrado com o mesmo e-mail, retornará uma mensagem de erro.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Já existe usuário cadastrado com o e-mail informado."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Erro interno do servidor."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "Detalhar usuário",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 2
+                    },
+                    "nome": {
+                      "type": "string",
+                      "example": "Luiz Guarda"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "luizg@email.com"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "500": {
+            "description": "Erro interno do servidor.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Erro interno do servidor."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "Atualizar usuário",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "description": "Atualizar dados do usuário",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string",
+                    "example": "Luiz Guarda da Silva"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "luizg@email.com"
+                  },
+                  "senha": {
+                    "type": "string",
+                    "example": "123abc"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Sucesso"
+          },
+          "400": {
+            "description": "Caso já exista usuário cadastrado com o mesmo e-mail, retornará uma mensagem de erro.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Já existe usuário cadastrado com o e-mail informado."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "500": {
+            "description": "Erro interno do servidor.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Erro interno do servidor."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/alunos": {
+      "get": {
+        "tags": [
+          "Aluno"
+        ],
+        "summary": "Lista todos os alunos",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "nome": {
+                        "type": "string",
+                        "example": "Eduardo dos Santos"
+                      },
+                      "idade": {
+                        "type": "integer",
+                        "example": 15
+                      },
+                      "nota_primeiro_semestre": {
+                        "type": "integer",
+                        "example": 8
+                      },
+                      "nota_segundo_semestre": {
+                        "type": "integer",
+                        "example": 5
+                      },
+                      "nome_professor": {
+                        "type": "string",
+                        "example": "Maria Guerra"
+                      },
+                      "numero_sala": {
+                        "type": "integer",
+                        "example": 3
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "500": {
+            "description": "Erro interno do servidor.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Erro interno do servidor."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/aluno": {
+      "post": {
+        "tags": [
+          "Aluno"
+        ],
+        "summary": "Cadastrar aluno",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "description": "Informar os dados para cadastrar o aluno.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string",
+                    "example": "Eduardo dos Santos"
+                  },
+                  "idade": {
+                    "type": "integer",
+                    "example": 15
+                  },
+                  "nota_primeiro_semestre": {
+                    "type": "integer",
+                    "example": 8
+                  },
+                  "nota_segundo_semestre": {
+                    "type": "integer",
+                    "example": 5
+                  },
+                  "nome_professor": {
+                    "type": "string",
+                    "example": "Maria Guerra"
+                  },
+                  "numero_sala": {
+                    "type": "integer",
+                    "example": 3
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "nome": {
+                      "type": "string",
+                      "example": "Eduardo dos Santos"
+                    },
+                    "idade": {
+                      "type": "integer",
+                      "example": 15
+                    },
+                    "nota_primeiro_semestre": {
+                      "type": "integer",
+                      "example": 8
+                    },
+                    "nota_segundo_semestre": {
+                      "type": "integer",
+                      "example": 5
+                    },
+                    "nome_professor": {
+                      "type": "string",
+                      "example": "Maria Guerra"
+                    },
+                    "numero_sala": {
+                      "type": "integer",
+                      "example": 3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Todos os campos são obrigatórios.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "O nome do aluno é obrigatório."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "500": {
+            "description": "Erro interno do servidor.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Erro interno do servidor."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/aluno/{id}": {
+      "get": {
+        "tags": [
+          "Aluno"
+        ],
+        "summary": "Detalhar um aluno",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Id do aluno (number).",
+            "required": true,
+            "in": "path",
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "nome": {
+                        "type": "string",
+                        "example": "Eduardo dos Santos"
+                      },
+                      "idade": {
+                        "type": "integer",
+                        "example": 15
+                      },
+                      "nota_primeiro_semestre": {
+                        "type": "integer",
+                        "example": 8
+                      },
+                      "nota_segundo_semestre": {
+                        "type": "integer",
+                        "example": 5
+                      },
+                      "nome_professor": {
+                        "type": "string",
+                        "example": "Maria Guerra"
+                      },
+                      "numero_sala": {
+                        "type": "integer",
+                        "example": 3
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "O id não é um número válido.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Informe um id válido."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "description": "Não foi possível encontrar aluno com o id informado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Aluno não encontrado."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Erro interno do servidor."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Aluno"
+        ],
+        "summary": "Atualizar dados do aluno",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Id do aluno (number).",
+            "required": true,
+            "in": "path",
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Informar os dados para atualizar o perfil do aluno.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string",
+                    "example": "Eduardo dos Santos"
+                  },
+                  "idade": {
+                    "type": "integer",
+                    "example": 15
+                  },
+                  "nota_primeiro_semestre": {
+                    "type": "integer",
+                    "example": 8
+                  },
+                  "nota_segundo_semestre": {
+                    "type": "integer",
+                    "example": 5
+                  },
+                  "nome_professor": {
+                    "type": "string",
+                    "example": "Maria Guerra"
+                  },
+                  "numero_sala": {
+                    "type": "integer",
+                    "example": 3
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "nome": {
+                      "type": "string",
+                      "example": "Eduardo dos Santos"
+                    },
+                    "idade": {
+                      "type": "integer",
+                      "example": 15
+                    },
+                    "nota_primeiro_semestre": {
+                      "type": "integer",
+                      "example": 8
+                    },
+                    "nota_segundo_semestre": {
+                      "type": "integer",
+                      "example": 5
+                    },
+                    "nome_professor": {
+                      "type": "string",
+                      "example": "Maria Guerra"
+                    },
+                    "numero_sala": {
+                      "type": "integer",
+                      "example": 3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "O id não é um número válido.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Informe um id válido."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "description": "Não foi possível encontrar aluno com o id informado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Aluno não encontrado."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Erro interno do servidor."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Aluno"
+        ],
+        "summary": "Excluir os dados do aluno",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Id do aluno (number).",
+            "required": true,
+            "in": "path",
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Os dados do aluno foram excluídos com sucesso."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "O id não é um número válido.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Informe um id válido."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "description": "Não foi possível encontrar aluno com o id informado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Aluno não encontrado."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string",
+                      "example": "Erro interno do servidor."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "responses": {
+      "UnauthorizedError": {
+        "description": "Token de acesso está inválido."
+      }
+    }
+  }
+}
